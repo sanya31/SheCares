@@ -1,10 +1,61 @@
 package com.sanyagupta.shecares.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
 public class DatesModel {
     private String start;
     private String end;
     private int duration;
     private int cycle;
+    private int EstimatedDayofOvulation;
+    private int TotalDaysofFertility;
+    private int MeanBleedingIntensity;
+
+    public int getEstimatedDayofOvulation() {
+        return EstimatedDayofOvulation;
+    }
+
+    public void setEstimatedDayofOvulation(int estimatedDayofOvulation) {
+        EstimatedDayofOvulation = estimatedDayofOvulation;
+    }
+
+    public int getTotalDaysofFertility() {
+        return TotalDaysofFertility;
+    }
+
+    public void setTotalDaysofFertility(int totalDaysofFertility) {
+        TotalDaysofFertility = totalDaysofFertility;
+    }
+
+    public int getMeanBleedingIntensity() {
+        return MeanBleedingIntensity;
+    }
+
+    public void setMeanBleedingIntensity(int meanBleedingIntensity) {
+        MeanBleedingIntensity = meanBleedingIntensity;
+    }
+
+    public int getNumberofDaysofIntercourse() {
+        return NumberofDaysofIntercourse;
+    }
+
+    public void setNumberofDaysofIntercourse(int numberofDaysofIntercourse) {
+        NumberofDaysofIntercourse = numberofDaysofIntercourse;
+    }
+
+    public float getBMI() {
+        return BMI;
+    }
+
+    public void setBMI(float BMI) {
+        this.BMI = BMI;
+    }
+
+    private int NumberofDaysofIntercourse;
+    private float BMI;
 
     public DatesModel(){
     }
@@ -41,59 +92,16 @@ public class DatesModel {
     }
 
     public int calcDuration(){
-
-        String sub= new String(),sub1= new String();
-        int i=0,j=0;
-        while(start.charAt(i)!='/')
-        {
-            sub+=start.charAt(i);
-            i++;
+        SimpleDateFormat myFormat = new SimpleDateFormat("dd/MM/yyyy");
+        long diff = 0;
+        try {
+            Date date1 = myFormat.parse(start);
+            Date date2 = myFormat.parse(end);
+            diff = date2.getTime() - date1.getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
-        i++;
-        while(end.charAt(j)!='/')
-        {
-            sub1+=end.charAt(j);
-            j++;
-        }
-        j++;
-        int date= Integer.valueOf(sub);
-        sub="";
-        int date1=Integer.valueOf(sub1);
-        sub1="";
-        while(start.charAt(i)!='/')
-        {
-            sub+=start.charAt(i);
-            i++;
-        }
-        while(end.charAt(j)!='/')
-        {
-            sub1+=end.charAt(j);
-            j++;
-        }
-        int month1=Integer.valueOf(sub1);
-        int month = Integer.valueOf(sub);
-
-        int datediff=date1-date;
-        int monthdiff=month1-month;
-        if(monthdiff!=0)
-        {
-            if(month==4||month==6||month==8||month==10)
-            {
-                duration = 30-date+date1+1;
-            }
-            else if(month==2)
-            {
-                duration = 28- date +date1 + 1;
-            }
-            else
-                duration = 31- date + date1+1;
-        }
-
-        else{
-            duration = date1-date;
-        }
-
-        return duration;
+        return 1+(int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
     }
     public int getDuration(){
         return calcDuration();

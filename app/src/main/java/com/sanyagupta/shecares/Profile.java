@@ -1,8 +1,7 @@
 package com.sanyagupta.shecares;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,12 +9,13 @@ import android.os.Bundle;
 import android.provider.AlarmClock;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -26,22 +26,27 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.sanyagupta.shecares.data.MyDbHandler;
+
+import org.checkerframework.checker.units.qual.A;
 
 import java.util.Calendar;
 
 public class Profile extends AppCompatActivity {
 
-    TextView feedback , nxtdate, cycleLength, periodLength, delete,share,weight;
+    TextView feedback , nxtdate, cycleLength, periodLength, delete,share,weight,wt,ic,ht,ag,fl,np;
     LinearLayout reminder;
-    EditText Feedback;
+    // EditText Feedback;
     int hour, minutes,second;
+    Spinner ms;
+    String[] maritalStatus = {"Married", "Unmarried", "prefer not to say"};
     MyDbHandler db= new MyDbHandler(Profile.this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
         feedback=findViewById(R.id.feedback);
         reminder=findViewById(R.id.reminder);
         weight=findViewById(R.id.weight);
@@ -49,7 +54,65 @@ public class Profile extends AppCompatActivity {
         cycleLength=findViewById(R.id.cyclelength);
         periodLength=findViewById(R.id.periodlength);
         delete=findViewById(R.id.delete);
-        Feedback=findViewById(R.id.review);
+//        ms = findViewById(R.id.maritalstatus);
+//        wt = findViewById(R.id.wt);
+//        ic = findViewById(R.id.ic);
+//        ht = findViewById(R.id.ht);
+//        ag = findViewById(R.id.ag);
+//        fl = findViewById(R.id.fl);
+//        np = findViewById(R.id.np);
+
+//        wt.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                callDialog();
+//            }
+//        });
+//        ic.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                callDialog();
+//            }
+//        });
+//        ht.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                callDialog();
+//            }
+//        });
+//        ag.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                callDialog();
+//            }
+//        });
+//        fl.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                callDialog();
+//            }
+//        });
+//        np.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                callDialog();
+//            }
+//        });
+
+
+        //setting spinner for marital status
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(Profile.this, android.R.layout.simple_spinner_item, maritalStatus);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        ms.setAdapter(adapter);
+//
+//        ms.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                String value = adapterView.getItemAtPosition(i).toString();
+//            }
+//        });
+
+        // Feedback=findViewById(R.id.review);
         share = findViewById(R.id.share);
         if(db.getCount() > 0) {
             nxtdate.setText(String.valueOf(db.nextDate()));
@@ -209,6 +272,7 @@ public class Profile extends AppCompatActivity {
         b = reg_layout.findViewById(R.id.bmi);
         d = reg_layout.findViewById(R.id.detail);
 
+
         calc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -237,8 +301,33 @@ public class Profile extends AppCompatActivity {
         dialog.show();
     }
 
+//    private void callDialog() {
+//        final AlertDialog.Builder dialog =new AlertDialog.Builder(this);
+////
+////
+//        LayoutInflater inflater = LayoutInflater.from(this);
+//        View reg_layout = inflater.inflate(R.layout.enterdetails, null);
+//        dialog.setView(reg_layout);
+//
+//        EditText detail;
+//
+//        detail  = reg_layout.findViewById(R.id.detail);
+//        dialog.setPositiveButton("ADD", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//
+//                Toast.makeText(Profile.this, "Add", Toast.LENGTH_SHORT).show();
+//                return;
+//            }
+//        });
+//
+//        dialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                dialog.dismiss();
+//            }
+//        });
+//        dialog.show();
+//    }
+
 }
-
-
-
-

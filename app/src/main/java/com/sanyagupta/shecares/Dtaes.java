@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -36,7 +37,7 @@ public class Dtaes extends AppCompatActivity {
 
 
     TextView btn , duration ,cycleLength;
-
+    LinearLayout layout;
 
     MyDbHandler db =new MyDbHandler(Dtaes.this);
 
@@ -49,13 +50,13 @@ public class Dtaes extends AppCompatActivity {
         btn=findViewById(R.id.Add);
         duration= findViewById(R.id.duration);
         cycleLength =findViewById(R.id.cyclelength);
-
+        layout = findViewById(R.id.Layout);
 
         ListView listview  = findViewById(R.id.listview);
 
 //if(db.getCount()>0) {
         duration.setText(String.valueOf(db.averagePeriodLength()) + " days");
-        cycleLength.setText(String.valueOf(db.average()) + " days");
+        cycleLength.setText(String.valueOf(db.mean_cycle_length()) + " days");
 //}
         ArrayList<DatesModel> datesModelArrayList=db.getAllData();
         int s=datesModelArrayList.size();
@@ -120,6 +121,7 @@ public class Dtaes extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     db.deleteDate(temp);
+                    layout.removeView(row);
                 }
             });
             edit.setOnClickListener(new View.OnClickListener() {
