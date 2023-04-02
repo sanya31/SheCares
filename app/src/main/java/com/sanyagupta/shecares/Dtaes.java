@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,7 +18,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,9 +26,6 @@ import com.sanyagupta.shecares.model.DatesModel;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 public class Dtaes extends AppCompatActivity {
@@ -38,6 +33,7 @@ public class Dtaes extends AppCompatActivity {
 
     TextView btn , duration ,cycleLength;
     LinearLayout layout;
+    ListView listview;
 
     MyDbHandler db =new MyDbHandler(Dtaes.this);
 
@@ -51,13 +47,10 @@ public class Dtaes extends AppCompatActivity {
         duration= findViewById(R.id.duration);
         cycleLength =findViewById(R.id.cyclelength);
         layout = findViewById(R.id.Layout);
+        listview  = findViewById(R.id.listview);
 
-        ListView listview  = findViewById(R.id.listview);
-
-//if(db.getCount()>0) {
         duration.setText(String.valueOf(db.averagePeriodLength()) + " days");
         cycleLength.setText(String.valueOf(db.mean_cycle_length()) + " days");
-//}
         ArrayList<DatesModel> datesModelArrayList=db.getAllData();
         int s=datesModelArrayList.size();
         ArrayList<String> dates=new ArrayList<>();
@@ -133,7 +126,6 @@ public class Dtaes extends AppCompatActivity {
             textView.setText(dates.get(position));
             textView1.setText("Duration : " + dur.get(position));
             textview2.setText("CycleLength : " + cycle.get(position));
-//            pb.setProgress(Integer.valueOf(dur.get(position)));
             return row;
         }
     }
@@ -188,8 +180,6 @@ public class Dtaes extends AppCompatActivity {
                     }
                 }, year, month, day);
 
-                //for setting minimum date as current date of system
-//                datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
                 datePickerDialog.show();
             }
         });
@@ -210,8 +200,6 @@ public class Dtaes extends AppCompatActivity {
                     }
                 }, year, month, day);
 
-                //for setting minimum date as current date of system
-//                datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
                 datePickerDialog.show();
             }
         });

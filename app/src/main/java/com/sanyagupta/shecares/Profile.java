@@ -33,15 +33,15 @@ import com.sanyagupta.shecares.data.MyDbHandler;
 import org.checkerframework.checker.units.qual.A;
 
 import java.util.Calendar;
-
+//        TODO: Implement for personal details, add callDialog function atv the end
 public class Profile extends AppCompatActivity {
 
     TextView feedback , nxtdate, cycleLength, periodLength, delete,share,weight,wt,ic,ht,ag,fl,np;
     LinearLayout reminder;
     // EditText Feedback;
     int hour, minutes,second;
-    Spinner ms;
-    String[] maritalStatus = {"Married", "Unmarried", "prefer not to say"};
+//    Spinner ms;
+//    String[] maritalStatus = {"Married", "Unmarried", "prefer not to say"};
     MyDbHandler db= new MyDbHandler(Profile.this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -191,7 +191,6 @@ public class Profile extends AppCompatActivity {
     private void showdialog() {
         final AlertDialog.Builder dialog =new AlertDialog.Builder(this);
         dialog.setTitle("SET Reminder");
-//        dialog.setMessage("Provide Us Your Valuable Feedback");
 
         LayoutInflater inflater = LayoutInflater.from(this);
         View reg_layout = inflater.inflate(R.layout.reminder, null);
@@ -256,8 +255,7 @@ public class Profile extends AppCompatActivity {
     private void ShowDialog() {
         final AlertDialog.Builder dialog =new AlertDialog.Builder(this);
         dialog.setTitle("BMI Calculator");
-//
-//
+
         LayoutInflater inflater = LayoutInflater.from(this);
         View reg_layout = inflater.inflate(R.layout.bmicalculator, null);
         dialog.setView(reg_layout);
@@ -300,34 +298,5 @@ public class Profile extends AppCompatActivity {
 
         dialog.show();
     }
-
-//    private void callDialog() {
-//        final AlertDialog.Builder dialog =new AlertDialog.Builder(this);
-////
-////
-//        LayoutInflater inflater = LayoutInflater.from(this);
-//        View reg_layout = inflater.inflate(R.layout.enterdetails, null);
-//        dialog.setView(reg_layout);
-//
-//        EditText detail;
-//
-//        detail  = reg_layout.findViewById(R.id.detail);
-//        dialog.setPositiveButton("ADD", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//
-//                Toast.makeText(Profile.this, "Add", Toast.LENGTH_SHORT).show();
-//                return;
-//            }
-//        });
-//
-//        dialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                dialog.dismiss();
-//            }
-//        });
-//        dialog.show();
-//    }
 
 }

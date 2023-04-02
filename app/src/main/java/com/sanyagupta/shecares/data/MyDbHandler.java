@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 import android.widget.Toast;
 
 
@@ -13,7 +12,6 @@ import com.sanyagupta.shecares.ml.Predictor;
 import com.sanyagupta.shecares.model.DatesModel;
 import com.sanyagupta.shecares.parameters.Parameters;
 
-import org.checkerframework.checker.units.qual.A;
 import org.tensorflow.lite.DataType;
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
 
@@ -144,7 +142,7 @@ public class MyDbHandler extends SQLiteOpenHelper{
         int[] arr = {26, 12, 3, 4, 4, 10, 5, 25, 1, 65, 150, 0, 24};
         if(cursor.moveToLast())
         {
-//
+//            Initial method for prediction - Using avg of last 3 cycles
 //            do {
 //                avg = avg + cursor.getInt(3);
 //                count++;

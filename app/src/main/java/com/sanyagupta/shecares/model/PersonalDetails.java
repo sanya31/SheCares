@@ -1,5 +1,5 @@
 package com.sanyagupta.shecares.model;
-
+// TODO: Implement getting personal details from user and save in database
 public class PersonalDetails {
     private int age;
     private int Maristatus;
